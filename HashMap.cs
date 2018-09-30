@@ -76,7 +76,8 @@ namespace SnapCall
 				int subarray = (int)(index / Size);
 				while (true)
 				{
-					if (Data[subarray].Array[index % Size] == key) return Data[subarray].Array[index % Size + 1];
+					if (Data[subarray].Array[index % Size] == key)
+                        return Data[subarray].Array[index % Size + 1];
 					index += 2;
 				}
 			}

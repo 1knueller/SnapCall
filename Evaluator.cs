@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace SnapCall
 		private Dictionary<ulong, ulong> monteCarloMap;
 
 		public Evaluator(
-			string fileName =	null,
+			string fileNameToLoadFrom =	null,
 			bool fiveCard =		true,
 			bool sixCard =		true,
 			bool sevenCard =	true,
@@ -31,16 +31,16 @@ namespace SnapCall
 			if (sevenCard && !sixCard) throw new ArgumentException("Seven card eval requires six card eval");
 
 			// Load hand rank table or create one if no filename was given
-			if (fileName != null)
+			if (fileNameToLoadFrom != null)
 			{
-				if (!File.Exists(fileName))
+				if (!File.Exists(fileNameToLoadFrom))
 				{
-					throw new ArgumentException(string.Format("File {0} does not exist", fileName));
+					throw new ArgumentException(string.Format("File {0} does not exist", fileNameToLoadFrom));
 				}
 				else
 				{
-					if (debug) Console.WriteLine("Loading table from {0}", fileName);
-					LoadFromFile(fileName);
+					if (debug) Console.WriteLine("Loading table from {0}", fileNameToLoadFrom);
+					LoadFromFile(fileNameToLoadFrom);
 				}
 			}
 			else
@@ -70,7 +70,7 @@ namespace SnapCall
 				Console.WriteLine("Running monte carlo simulation");
 				GenerateMonteCarloMap(100000);
 				Console.WriteLine("Writing table to disk");
-				SaveToFile(fileName);
+				SaveToFile(fileNameToLoadFrom);
 			}
 
 			TimeSpan elapsed = DateTime.UtcNow - start;
