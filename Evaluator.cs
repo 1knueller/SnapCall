@@ -94,9 +94,10 @@ namespace SnapCall
 				var bytes = HashMap.Serialize(handRankMap);
 				fileStream.Write(bytes, 0, bytes.Length);
 			}
-		}
+            if (debug) Console.WriteLine("Done Saving!");
+        }
 
-		private void LoadFromFile(string path)
+        private void LoadFromFile(string path)
 		{
 			using (FileStream inputStream = new FileStream(path, FileMode.Open))
 			using (MemoryStream memoryStream = new MemoryStream())
