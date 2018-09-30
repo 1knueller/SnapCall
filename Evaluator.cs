@@ -162,7 +162,7 @@ namespace SnapCall
 
 		private void GenerateSixCardTable()
 		{
-			var sourceSet = Enumerable.Range(1, 52).ToList();
+			var sourceSet = Enumerable.Range(0, 52).ToList();
 			var combinations = new Combinatorics.Collections.Combinations<int>(sourceSet, 6);
 			int count = 0;
 			foreach (List<int> cards in combinations)
@@ -182,7 +182,7 @@ namespace SnapCall
 
 		private void GenerateSevenCardTable()
 		{
-			var sourceSet = Enumerable.Range(1, 52).ToList();
+			var sourceSet = Enumerable.Range(0, 52).ToList();
 			var combinations = new Combinatorics.Collections.Combinations<int>(sourceSet, 7);
 			int count = 0;
 			foreach (List<int> cards in combinations)
@@ -203,7 +203,7 @@ namespace SnapCall
 		private void GenerateMonteCarloMap(int iterations)
 		{
 			monteCarloMap = new Dictionary<ulong, ulong>();
-			var sourceSet = Enumerable.Range(1, 52).ToList();
+			var sourceSet = Enumerable.Range(0, 52).ToList();
 			var combinations = new Combinatorics.Collections.Combinations<int>(sourceSet, 2);
 			int count = 0;
 			foreach (List<int> cards in combinations)
