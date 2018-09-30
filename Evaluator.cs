@@ -20,7 +20,7 @@ namespace SnapCall
 			bool fiveCard =		true,
 			bool sixCard =		true,
 			bool sevenCard =	true,
-			double loadFactor =	1.25,
+			double loadFactor =	1.5,
 			bool debug =		true,
 			bool runCustom =	false)
 		{
