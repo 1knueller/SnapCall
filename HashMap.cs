@@ -57,7 +57,11 @@ namespace SnapCall
 			Count = 1;
 			while (TotalSize / Count > 10000000) Count *= 2;
 			Size = TotalSize / Count;
-			Data = new List<ArrayWrapper>();
+
+            if (Size % 2 == 1)
+                Size++;
+
+            Data = new List<ArrayWrapper>();
 			TotalSize = Size * Count;
 			for (int i = 0; i < Count; i++)
 			{
