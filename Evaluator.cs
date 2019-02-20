@@ -15,12 +15,14 @@ namespace SnapCall
 		private HashMap handRankMap;
 		private Dictionary<ulong, ulong> monteCarloMap;
 
+        const float loadfactor = 1.25f;
+
 		public Evaluator(
 			string fileNameToLoadFrom =	null,
 			bool fiveCard =		true,
 			bool sixCard =		true,
 			bool sevenCard =	true,
-			double loadFactor =	1.5,
+			double loadFactor = loadfactor,
 			bool debug =		true,
 			bool runCustom =	false)
 		{
@@ -89,22 +91,21 @@ namespace SnapCall
 		public void SaveToFile(string fileName)
 		{
 			if (debug) Console.WriteLine("Saving table to {0}", fileName);
-			using (FileStream fileStream = new FileStream(fileName, FileMode.Create))
-			{
-				var bytes = HashMap.Serialize(handRankMap);
-				fileStream.Write(bytes, 0, bytes.Length);
-			}
+
+            using (var file = File.Create(fileName))
+            {
+                ProtoBuf.Serializer.Serialize(file, handRankMap);
+            }
+
             if (debug) Console.WriteLine("Done Saving!");
         }
 
         private void LoadFromFile(string path)
 		{
-			using (FileStream inputStream = new FileStream(path, FileMode.Open))
-			using (MemoryStream memoryStream = new MemoryStream())
-			{
-				inputStream.CopyTo(memoryStream);
-				handRankMap = HashMap.Deserialize(memoryStream.ToArray());
-			}
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                handRankMap = HashMap.Deserialize(fs);
+            }
 		}
 
 		private void GenerateFiveCardTable()

@@ -103,7 +103,12 @@ namespace SnapCall
 			}
 		}
 
-		public static byte[] Serialize(HashMap tData)
+        public static HashMap Deserialize(FileStream fs)
+        {
+            return Serializer.Deserialize<HashMap>(fs);
+        }
+
+        public static byte[] Serialize(HashMap tData)
 		{
 			using (var ms = new MemoryStream())
 			{
