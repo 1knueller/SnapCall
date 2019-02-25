@@ -78,6 +78,10 @@ namespace SnapCall
             //if (monteCarloMap.ContainsKey(bitmap)) return (int)monteCarloMap[bitmap];
 
             // Otherwise return the real evaluation
+
+            if (handRankMap == null)
+                Reload();
+
             return (int)handRankMap[bitmap];
         }
 
